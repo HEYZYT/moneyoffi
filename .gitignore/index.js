@@ -32,48 +32,4 @@ bot.on("message", message => {
     }
 });
 
-bot.on('message', message => {
-    if(message.content === prefix + 'infos') {
-        let sicon = message.guild.iconURL;
-        var embed = new Discord.RichEmbed()
-        .setThumbnail(sicon)
-        .setDescription('Infomations du Discord')
-        .addField("Nom du Discord", message.guild.name)
-        .addField("Crée le", message.guild.createdAt)
-        .addField("Tu as rejoins le", message.member.joinedAt)
-        .addField("Utilisateurs sur le Discord", message.guild.memberCount)
- 
-    message.channel.sendEmbed(embed)    
-    }
-
-    if (message.content.startsWith(prefix + "sondage")) {
-        if(message.author.id == "356185137379016706", "385851599693676544"){
-            let args = message.content.split(" ").slice(1);
-            let thingToEcho = args.join(" ")
-            var embed = new Discord.RichEmbed()
-                .setDescription("Sondage")
-                .addField(thingToEcho, "✅ Pour Oui | ❌ Pour Non")
-                .setColor("#FF00FF")
-                .setFooter(`Sondage crée par ${message.author.username}`)
-            message.guild.channels.find("name", "👌sondage👌").sendEmbed(embed)
-            .then(function (message) {
-                message.react("✅")
-                message.react("❌")
-                message.channel.send("@everyone")
-                console.log(`Sondage!`);
-            })   .catch(function() {
-            })
-            }else{
-                return message.reply("Tu n'as pas la permission!")
-        }
-    }
-})
-
-bot.on('message', message => {
-    if(message.content === prefix + 'setprefix'){
-        var embed = new Discord.RichEmbed()
-        .addField("Usage:", prefix + "setprefix `<Prefix>`")             
-    }
-})
-
 bot.login(process.env.TOKEN);
